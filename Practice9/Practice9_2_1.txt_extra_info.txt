@@ -1,0 +1,31 @@
+В задании присутствует требование:
+
+Список вариантов выбора передавать как параметры контекста
+-------------------------------------------------------
+<context-param>
+    <param-name>list</param-name>
+    <param-value>Footbal Biathlon Basketball</param-value>
+</context-param>
+-------------------------------------------------------
+
+Необходимо сделать следующее:
+
+1. Создать дескриптор развертывания web.xml в каталоге WEB-INF
+(образец можно взять тут: TOMCAT_HOME/conf/web.xml)
+
+2. Создать в web.xml секцию
+
+<context-param>
+    <param-name>list</param-name>
+    <param-value>Footbal Biathlon Basketball</param-value>
+</context-param>
+
+3. Создать слушатель жизненного цикла сервлетного контекста (implements ServletContextListener)
+
+4. В методе contextInitialized(ServletContextEvent sce) 
+прописать считывание параметра контекста с именем list.
+
+String listAsString = sce.getServletContext().getInitParameter("list");
+
+5. Значение параметра контекста с именем list разбираем на слова и создаем List, который содержит названия видов спорта.
+List кладем как атрибут в сервлетный контекст.
