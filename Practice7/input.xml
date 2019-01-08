@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<medicines>
+
+	<Medicine>
+		<name>Vitamine C</name>
+		<pharm>Roga i Copita</pharm>
+		<analogs>
+			<name>Аскорбинка</name>
+			<version>
+				<type>гранулы</type>
+				<manufacturer name="first">
+					<certificate>
+						<numberRegistration>123</numberRegistration>
+						<dateIsuue>12.03.2008</dateIsuue>
+						<dateExpiration>10.10.2018</dateExpiration>
+						<registeringOrg>Минздрав</registeringOrg>
+					</certificate>
+					<package>
+						<type>коробочка</type>
+						<quantity>50</quantity>
+						<price>12.43</price>
+					</package>
+					<dosage>
+						<dose>1</dose>
+						<period>twice a day</period>
+					</dosage>
+				</manufacturer>
+				<manufacturer name="second">
+					<certificate>
+						<numberRegistration>345</numberRegistration>
+						<dateIsuue>12.03.2012</dateIsuue>
+						<dateExpiration>10.10.2021</dateExpiration>
+						<registeringOrg>ЕС</registeringOrg>
+					</certificate>
+					<package>
+						<type>коробочка</type>
+						<quantity>70</quantity>
+						<price>30.70</price>
+					</package>
+					<dosage>
+						<dose>1</dose>
+						<period>after meal</period>
+					</dosage>
+				</manufacturer>
+			</version>
+			<version>
+				<type>таблетки</type>
+				<manufacturer name="Third">
+					<certificate>
+						<numberRegistration>567</numberRegistration>
+						<dateIsuue>24.06.1994</dateIsuue>
+						<dateExpiration>23.06.2032</dateExpiration>
+						<registeringOrg>OneDayFirm</registeringOrg>
+					</certificate>
+					<package>
+						<type>упаковка</type>
+						<quantity>20</quantity>
+						<price>20.0</price>
+					</package>
+					<dosage>
+						<dose>1</dose>
+						<period>after meal</period>
+					</dosage>
+				</manufacturer>
+			</version>
+		</analogs>
+		<analogs>
+			<name>Multivitamin</name>
+			<version>
+				<type>tablets</type>
+				<manufacturer name="SomeGermanFirm">
+					<certificate>
+						<numberRegistration>23-456</numberRegistration>
+						<dateIsuue>24.06.1994</dateIsuue>
+						<dateExpiration>23.06.2032</dateExpiration>
+						<registeringOrg>OneDayFirm</registeringOrg>
+					</certificate>
+					<package>
+						<type>упаковка</type>
+						<quantity>20</quantity>
+						<price>20.0</price>
+					</package>
+					<dosage>
+						<dose>1</dose>
+						<period>after meal</period>
+					</dosage>
+				</manufacturer>
+			</version>
+		</analogs>
+	</Medicine>
+</medicines>
