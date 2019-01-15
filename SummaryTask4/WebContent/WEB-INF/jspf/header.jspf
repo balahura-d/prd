@@ -1,0 +1,94 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%--=========================================================================== 
+Header (top area). 
+===========================================================================--%>
+
+<%@ page import="ua.nure.balagura.SummaryTask4.db.entity.Role"%>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf"%>
+<fmt:setLocale value="${not empty locale ? locale : 'uk'}" />
+	<fmt:setBundle basename="ResourceBundle.resource" />
+
+<tr>
+	<td id="header"><c:if test="${not empty user}">
+			<%--=========================================================================== 
+This is the user menu. 
+===========================================================================--%>
+
+			<div id="leftHeader">
+				<a href="../view/main.jsp"><fmt:message key="main" /></a> &nbsp;
+				<c:choose>
+					
+					<%--=========================================================================== 
+This way we define the ADMIN MENU. 
+===========================================================================--%>
+					<c:when test="${userRole.name == 'admin' }">
+						<a href="../controller?command=listUsers&role=driver"><fmt:message key="drivers" /></a> &nbsp;
+						<a href="../controller?command=listUsers&role=dispatcher"><fmt:message key="dispatcher" /></a> &nbsp;
+						<a href="../controller?command=listAutos"><fmt:message key="autos" /></a> &nbsp;
+						<a href="../controller?command=listFlights"><fmt:message key="flights" /></a> &nbsp;
+						<a href="../controller?command=listRequest"><fmt:message key="requests" /></a> &nbsp;
+		</c:when>
+
+					<%--=========================================================================== 
+This way we define the DISPATCHER MENU. 
+===========================================================================--%>
+					<c:when test="${userRole.name == 'dispatcher' }">
+						<a href="../controller?command=listFlights"><fmt:message key="flights" /></a> &nbsp;
+						<a href="../controller?command=listAutos"><fmt:message key="autos" /></a> &nbsp;
+						<a href="../controller?command=listRequest"><fmt:message key="requests" /></a> &nbsp;
+		</c:when>
+
+
+					<%--=========================================================================== 
+This way we define the USER MENU.
+===========================================================================--%>
+					<c:when test="${userRole.name == 'driver'}">
+						<a href="../controller?command=listFlights"><fmt:message key="flights" /></a> &nbsp;
+						<a href="../controller?command=listRequest"><fmt:message key="requests" /></a> &nbsp;
+		</c:when>
+				</c:choose>
+
+				<%--=========================================================================== 
+This way we define the settings anchor.
+===========================================================================--%>
+				<a href="../view/settings.jsp"><fmt:message key="settings" /></a> &nbsp;
+
+			</div>
+
+			<%--=========================================================================== 
+This way we define the menu located at the right of header. 
+===========================================================================--%>
+			<div id="rightHeader">
+			
+			<%-- <c:if test="${user.login eq user.password}">
+			Поменяйте пароль!
+			</c:if> --%>
+
+				<%--=========================================================================== 
+Type user name if the user object is presented in the current session.  
+===========================================================================--%>
+				<c:out value="${user.fullName}" />
+
+				<%--=========================================================================== 
+Type user role name if the user object is presented in the current session.  
+===========================================================================--%>
+				<c:if test="${not empty userRole}">
+					<c:out value="(" />
+					<fmt:message key="${userRole.name}" />
+					<c:out value=")" />
+				</c:if>
+
+				<%--=========================================================================== 
+Type link to logout  
+===========================================================================--%>
+				<a href="../controller?command=logout"> <fmt:message key="logout" /> </a>
+
+			</div>
+		</c:if> <c:if test="${empty user and title ne 'Login'}">
+			<div id="rightHeader">
+				<a href="../"><fmt:message key="login" /></a>
+			</div>
+		</c:if></td>
+</tr>
+

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--============================================================ Deployment 
+	Descriptor: web.xml ============================================================= -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://java.sun.com/xml/ns/javaee" 
+xmlns:web="http://java.sun.com/xml/ns/javaee" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  
+  <display-name>SummaryTask4</display-name>
+  
+  <welcome-file-list>
+    <welcome-file>view/login_page.jsp</welcome-file>
+  </welcome-file-list>
+  
+<!--============================================================
+	Controller
+=============================================================-->
+  <servlet>
+    <description></description>
+    <display-name>Controller</display-name>
+    <servlet-name>Controller</servlet-name>
+    <servlet-class>ua.nure.balagura.SummaryTask4.web.Controller</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>Controller</servlet-name>
+    <url-pattern>/controller</url-pattern>
+  </servlet-mapping>
+ 
+  <resource-ref>
+    <res-ref-name>jdbc/summarytask</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+  
+  
+<!--============================================================
+	Context listener
+=============================================================-->
+  <listener>
+    <listener-class>ua.nure.balagura.SummaryTask4.web.listener.ContextListener</listener-class>
+  </listener>
+  
+<!--============================================================
+	Encoding support filter
+=============================================================-->
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>ua.nure.balagura.SummaryTask4.web.filter.EncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<servlet-name>Controller</servlet-name>
+	</filter-mapping>
+  
+  
+<!--============================================================
+	Security filter.
+	1) admin: administrator commands
+	2) dispatcher: dispatcher commands
+	2) driver: driver commands
+	3) commons: commands for all roles
+	4) out-of-control: commands without access control
+=============================================================-->
+
+	<filter>
+		<filter-name>CommandAccessFilter</filter-name>
+		<filter-class>ua.nure.balagura.SummaryTask4.web.filter.CommandAccessFilter</filter-class>
+		<init-param>
+			<param-name>admin</param-name>
+			<param-value>listUsers listAutos stat actAut actUser actFlight applyRequest closeRequest</param-value>
+		</init-param>
+		<init-param>
+			<param-name>dispatcher</param-name>
+			<param-value>actFlight listAutos applyRequest closeRequest</param-value>
+		</init-param>
+		<init-param>
+			<param-name>driver</param-name>
+			<param-value>regRequest submitFlight cancelRequest</param-value>
+		</init-param>
+		<init-param>
+			<param-name>common</param-name>
+			<param-value>noCommand viewSettings listFlights listRequest</param-value>
+		</init-param>
+		<init-param>
+			<param-name>out-of-control</param-name>
+			<param-value>login logout</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>CommandAccessFilter</filter-name>
+		<servlet-name>Controller</servlet-name>
+	</filter-mapping>
+
+  
+<!--============================================================
+	Error page
+=============================================================-->
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/view/error_page.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/view/error_page.jsp</location>
+	</error-page>
+</web-app>

@@ -1,0 +1,18 @@
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
+
+<head>
+	<fmt:setLocale value="${not empty locale ? locale : 'uk'}" />
+	<fmt:setBundle basename="ResourceBundle.resource" />
+
+	<title>
+		<fmt:message key="${title}"/>
+	</title>
+	
+<%--=========================================================================== 
+Bind CSS document and scripts.
+===========================================================================--%> 
+	<link rel="stylesheet" href="../style/st4.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script type="text/javascript" src="../script/script.js"></script>
+	
+</head>
